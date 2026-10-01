@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   AI Readiness Assessment | Vigilant 360
+  </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+  </script>
+  <style>
+   :root{--ink:#131516;--orange:#f36f21;--orange-dark:#d95d14;--muted:#6f7478;--faint:#9aa0a4;--line:#e7e8e9;--soft:#f5f6f6;--white:#fff}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f7f7f6;color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}.site{position:sticky;top:0;z-index:100;height:74px;background:#fff;border-bottom:1px solid var(--line)}.site-wrap{max-width:1440px;height:74px;margin:0 auto;padding:0 34px;display:flex;align-items:center;justify-content:space-between}.logo{display:flex;align-items:center;background:#fff;padding:7px 12px;border-radius:6px}.logo img{width:150px;height:auto;display:block}.header-right{display:flex;align-items:center;gap:22px;color:#555;font-size:13px}.header-right a{color:#555;text-decoration:none}.header-right a:hover{color:var(--orange)}.hprog{position:absolute;left:0;bottom:-1px;height:3px;width:0;background:var(--orange);transition:width .35s ease}.page{min-height:calc(100vh - 74px);padding:42px 28px 80px}.app-grid{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px}.rail{position:sticky;top:104px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px 20px}.rail-title{font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin-bottom:18px}.rail-list{list-style:none;padding:0;margin:0}.rail-list li{display:flex;align-items:center;gap:9px;min-height:38px;color:#9a9da0;font-size:13px;transition:.2s ease}.rail-list li.cur{color:var(--ink);font-weight:700}.rail-list li.done{color:#565b5e}.rail-list .n{width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid #ddd;font-size:10px;flex:none}.rail-list li.cur .n{background:var(--ink);color:#fff;border-color:var(--ink)}.rail-list li.done .n{border-color:var(--orange);color:var(--orange)}.dotc{width:5px;height:5px;border-radius:50%;background:#ddd;flex:none}.rail-status{margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}.rail-text{font-size:12px;color:var(--muted);margin-bottom:9px}.rail-progress{height:5px;background:#eee;border-radius:20px;overflow:hidden}.rail-fill{width:0;height:100%;background:var(--orange);transition:width .35s ease}.panel{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 15px 45px rgba(19,21,22,.06);overflow:hidden}.panel-top{padding:18px 28px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px}.prog-text{font-size:12px;color:var(--muted)}.prog-right{display:flex;align-items:center;gap:10px}.prog-line{width:130px;height:5px;background:#eee;border-radius:10px;overflow:hidden}.prog-fill{height:100%;width:0;background:var(--orange);transition:width .35s ease}.prog-pct{font-size:12px;font-weight:700}.step-host{padding:48px 54px 36px;min-height:650px}.qcat{color:var(--orange);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;margin-bottom:13px}.qnum{font-size:12px;color:#8c9296;margin-bottom:10px}.q h1,.q h2{margin:0;max-width:820px;font-size:34px;line-height:1.14;letter-spacing:-.025em}.q .intro{margin:15px 0 0;max-width:760px;color:var(--muted);font-size:15px;line-height:1.65}.options{margin-top:32px;display:grid;gap:12px}.opt{display:block;position:relative}.opt input{position:absolute;opacity:0;pointer-events:none}.opt-box{min-height:66px;border:1px solid #dfe1e2;border-radius:13px;padding:13px 16px;display:flex;align-items:center;gap:14px;transition:background .12s ease,border-color .12s ease,transform .12s ease,box-shadow .12s ease}.opt:hover .opt-box{border-color:#b9bdc0;transform:translateY(-1px)}.opt .num{width:32px;height:32px;border-radius:50%;border:1px solid #d9dbdc;display:flex;align-items:center;justify-content:center;color:#686d70;font-size:12px;font-weight:700;flex:none;transition:.12s ease}.opt .txt{font-size:15px;line-height:1.45;color:#303437;transition:.12s ease}.opt input:checked+.opt-box{background:var(--ink);border-color:var(--ink);box-shadow:0 12px 28px rgba(19,21,22,.14)}.opt input:checked+.opt-box .num{background:var(--orange);border-color:var(--orange);color:#fff}.opt input:checked+.opt-box .txt{color:#fff;font-weight:500}.fgrid{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:20px}.field{display:flex;flex-direction:column}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:700;margin-bottom:8px;color:#383d40}.field label i{color:var(--orange);font-style:normal}.field input[type=text],.field input[type=email],.field select{width:100%;height:48px;border:1px solid #dfe1e2;border-radius:10px;padding:0 13px;background:#fff;color:var(--ink);outline:none}.field input:focus,.field select:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(243,111,33,.1)}.hint{margin-top:7px;font-size:11px;color:#8b9093}.chips{display:flex;flex-wrap:wrap;gap:8px}.chips label{margin:0;cursor:pointer}.chips input{position:absolute;opacity:0}.chips span{display:inline-flex;align-items:center;min-height:38px;padding:0 13px;border:1px solid #dedfe0;border-radius:999px;font-size:12px;color:#555a5d;transition:.15s ease}.chips input:checked+span{background:var(--ink);color:#fff;border-color:var(--ink)}.alert{display:none;margin:0 54px 20px;padding:12px 14px;border-radius:10px;background:#fff2ec;border:1px solid #ffd3bf;color:#9b4016;font-size:13px}.alert.show{display:block}.actions{padding:20px 28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:15px}.btn{min-height:46px;padding:0 21px;border-radius:999px;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:700;transition:.15s ease}.btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2}.btn-secondary{background:#fff;color:#333;border-color:#dfe1e2}.btn-secondary:hover{border-color:#aaa}.btn-primary{background:var(--orange);color:#fff}.btn-primary:hover{background:var(--orange-dark);transform:translateY(-1px)}.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none}.modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,12,13,.62);backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.modal-card{width:min(500px,100%);background:#fff;border-radius:22px;padding:38px;text-align:center;box-shadow:0 30px 100px rgba(0,0,0,.25)}.modal-icon{width:58px;height:58px;margin:0 auto 20px;border-radius:50%;background:#131516;color:#fff;display:flex;align-items:center;justify-content:center;font-size:25px}.modal-card h2{margin:0 0 12px;font-size:27px;letter-spacing:-.02em}.modal-card p{margin:0 auto 24px;max-width:390px;color:#6f7478;font-size:14px;line-height:1.65}.modal-card .btn{min-width:120px}.loading{display:none;position:fixed;inset:0;z-index:9998;background:rgba(255,255,255,.78);backdrop-filter:blur(3px);align-items:center;justify-content:center}.loading.show{display:flex}.loading-box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 30px;box-shadow:0 20px 60px rgba(0,0,0,.12);text-align:center}.spinner{width:35px;height:35px;margin:0 auto 13px;border:3px solid #eee;border-top-color:var(--orange);border-radius:50%;animation:spin .8s linear infinite}.loading-box div:last-child{font-size:13px;color:#666}@keyframes spin{to{transform:rotate(360deg)}}@media(max-width:900px){.app-grid{grid-template-columns:1fr}.rail{position:static}.rail-list{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.rail-list li{min-height:32px}.rail-list li span:last-child{display:none}}@media(max-width:700px){.site-wrap{padding:0 16px}.logo img{width:125px}.header-right{font-size:11px}.page{padding:20px 12px 50px}.step-host{padding:34px 20px 28px;min-height:600px}.q h1,.q h2{font-size:28px}.fgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.panel-top{padding:14px 18px}.prog-line{width:80px}.actions{padding:16px 18px}.actions .btn{flex:1}.alert{margin:0 20px 20px}.rail-list{grid-template-columns:1fr 1fr}}
+  </style>
+ </head>
+ <body>
+  <header class="site">
+   <div class="site-wrap">
+    <a aria-label="Vigilant 360" class="logo" href="index new.html">
+     <img alt="Vigilant 360" src="logo.png"/>
+    </a>
+    <div class="header-right">
+     <a href="https://vigilant360.com" rel="noopener" target="_blank">
+      vigilant360.com
+     </a>
+    </div>
+   </div>
+   <div class="hprog" id="hprog">
+   </div>
+  </header>
+  <main class="page">
+   <div class="app-grid">
+    <aside class="rail">
+     <div class="rail-title">
+      Assessment
+     </div>
+     <ul class="rail-list" id="railList">
+     </ul>
+     <div class="rail-status">
+      <div class="rail-text" id="railText">
+       0 / 20 answered
+      </div>
+      <div class="rail-progress">
+       <div class="rail-fill" id="railFill">
+       </div>
+      </div>
+     </div>
+    </aside>
+    <section class="panel">
+     <div class="panel-top">
+      <div class="prog-text" id="progText">
+       Organization profile
+      </div>
+      <div class="prog-right">
+       <div class="prog-line">
+        <div class="prog-fill" id="progFill">
+        </div>
+       </div>
+       <div class="prog-pct" id="progPct">
+        0%
+       </div>
+      </div>
+     </div>
+     <div class="step-host" id="stepHost">
+     </div>
+     <div class="alert" id="alert">
+     </div>
+     <div class="actions">
+      <button class="btn btn-secondary" id="backBtn" type="button">
+       ← Back
+      </button>
+      <button class="btn btn-primary" id="nextBtn" type="button">
+       Continue
+       <svg viewbox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6">
+        </path>
+       </svg>
+      </button>
+     </div>
+    </section>
+   </div>
+  </main>
+  <div class="loading" id="loading">
+   <div class="loading-box">
+    <div class="spinner">
+    </div>
+    <div>
+     Preparing your assessment report...
+    </div>
+   </div>
+  </div>
+  <div class="modal" id="submitModal">
+   <div class="modal-card">
+    <div class="modal-icon">
+     ✓
+    </div>
+    <h2>
+     Assessment Submitted
+    </h2>
+    <p>
+     Thank you for completing the Vigilant 360 AI Readiness Assessment. Your assessment has been submitted successfully. Your professional PDF report will be emailed to you shortly.
+    </p>
+    <button class="btn btn-primary" id="doneBtn" type="button">
+     Done
+    </button>
+   </div>
+  </div>
+  <script>
+   const SUBMISSION_API_URL="http://v360-ai-assessment-api-e2h5c9audkb6e3gg.eastus-01.azurewebsites.net";const STORE_KEY="v360_ai_assessment_v3";const INDUSTRIES=["Manufacturing","Healthcare & Life Sciences","Financial Services & Insurance","Retail & Consumer Goods","Professional Services","Technology & Software","Energy & Utilities","Public Sector & Education","Transportation & Logistics","Construction & Real Estate","Media & Telecommunications","Non-profit","Other"];const SIZES=["1–50 employees","51–250 employees","251–1,000 employees","1,001–5,000 employees","5,001–10,000 employees","10,000+ employees"];const PLATFORMS=["Microsoft","Oracle","SAP","Salesforce","ServiceNow","AWS","Google","Other"];const FUNCTIONS=["Finance","HR","Procurement","IT","Customer Service","Sales","Operations","Other"];const CATS={strategy:{name:"Strategy & Leadership",type:"readiness"},opportunity:{name:"AI Opportunity",type:"opportunity"},data:{name:"Data Readiness",type:"readiness"},tech:{name:"Technology & Integration",type:"readiness"},gov:{name:"Governance & Security",type:"readiness"},people:{name:"People & Adoption",type:"readiness"}};const QUESTIONS=[{n:1,cat:"strategy",w:6,t:"How clearly is AI connected to your organization's business priorities?",o:["Not considered","Initial discussions","Some priorities identified","Clear alignment","AI incorporated into strategy"]},{n:2,cat:"strategy",w:5,t:"What level of executive sponsorship exists for AI initiatives?",o:["None","Individual interest","Some leadership support","Executive sponsor identified","Active executive governance"]},{n:3,cat:"strategy",w:5,t:"Has your organization established measurable outcomes for AI initiatives (cost, productivity, revenue, customer experience, risk, etc.)?",o:["No","Discussed informally","Some measures identified","KPIs defined","KPIs systematically tracked"]},{n:4,cat:"strategy",w:4,t:"Is funding available for AI discovery, pilots and implementation?",o:["None","Unknown","Case-by-case","Budget available","Dedicated AI investment"]},{n:5,cat:"opportunity",w:4,t:"How much employee time is spent searching for information across documents, emails, knowledge bases or business systems?",o:["Very little","Low","Moderate","High","Very high"]},{n:6,cat:"opportunity",w:4,t:"How many business processes involve repetitive manual activities such as data entry, validation, reconciliation or document processing?",o:["Very few","Few","Several","Many","Extensive"]},{n:7,cat:"opportunity",w:4,t:"How frequently do employees make decisions that require reviewing or summarizing large amounts of information?",o:["Rarely","Occasionally","Regularly","Frequently","Core part of operations"]},{n:8,cat:"opportunity",w:4,t:"How much unstructured content does the organization process, such as documents, PDFs, emails, images, contracts or tickets?",o:["Very little","Low","Moderate","High","Very high"]},{n:9,cat:"opportunity",w:4,t:"How much opportunity exists to improve customer or employee interactions through assistants, recommendations, self-service or automated support?",o:["None identified","Limited","Some","Significant","Very significant"]},{n:10,cat:"data",w:5,t:"Is the data required for business operations available digitally and accessible?",o:["Mostly unavailable","Highly fragmented","Partially accessible","Mostly accessible","Easily accessible and governed"]},{n:11,cat:"data",w:5,t:"How would you rate the quality, completeness and consistency of your business data?",o:["Poor","Unknown","Significant issues","Mixed","Generally reliable / High quality and monitored"]},{n:12,cat:"data",w:5,t:"How integrated are your major enterprise systems and data sources?",o:["Highly siloed","Mostly siloed","Some integration","Well integrated","Enterprise-wide integration / API strategy"]},{n:13,cat:"data",w:5,t:"Does your organization have defined data ownership, classification, retention and governance practices?",o:["None","Informal","Partially defined","Established","Mature and monitored"]},{n:14,cat:"tech",w:5,t:"Does your technology environment support cloud services, APIs and integration with modern AI platforms?",o:["Very limited","Limited","Mixed","Mostly ready","Modern / cloud / API-enabled"]},{n:15,cat:"tech",w:5,t:"Does the organization currently use enterprise platforms that provide AI capabilities?",o:["Unknown / none","Limited","Some platforms","Multiple AI-capable platforms","AI capabilities already enabled"]},{n:16,cat:"tech",w:5,t:"Does IT have the ability to securely deploy, integrate, monitor and support new AI solutions?",o:["No","Limited","Developing","Established","Mature"]},{n:17,cat:"gov",w:5,t:"Are policies established for privacy, security and appropriate use of organizational data with AI?",o:["None","Discussions only","Draft / partial","Established","Enforced and monitored"]},{n:18,cat:"gov",w:5,t:"Does your organization have a process for AI governance, including approvals, human oversight, risk and compliance?",o:["None","Informal","Developing","Established","Mature governance framework"]},{n:19,cat:"gov",w:5,t:"Can your organization control and audit who can access sensitive information used by AI systems?",o:["No / unknown","Limited","Partial","Strong controls","Comprehensive and continuously monitored"]},{n:20,cat:"people",w:10,t:"How prepared is the workforce to adopt AI, considering AI awareness, skills, training and openness to process change?",o:["Not prepared","Low awareness","Developing","Generally prepared","Strong AI skills / adoption culture"]}];const READINESS_BANDS=[{min:0,max:24,label:"Exploring",text:"Foundational capabilities need development."},{min:25,max:49,label:"Emerging",text:"Some foundations exist; preparation is required."},{min:50,max:69,label:"Developing",text:"Suitable for controlled AI pilots."},{min:70,max:84,label:"Ready",text:"Strong foundations for broader AI implementation."},{min:85,max:100,label:"Scaling",text:"Mature foundation for enterprise AI adoption."}];const OPPORTUNITY_BANDS=[{min:0,max:24,label:"Limited",text:"Few obvious opportunities identified."},{min:25,max:49,label:"Moderate",text:"Several areas may benefit from AI."},{min:50,max:74,label:"High",text:"Meaningful AI opportunities exist across multiple processes."},{min:75,max:100,label:"Very High",text:"Strong potential for AI-assisted work and process improvement."}];const SECTIONS=[{key:"org",label:"Organization Profile"},{key:"strategy",label:"Strategy & Leadership"},{key:"opportunity",label:"AI Opportunity"},{key:"data",label:"Data Readiness"},{key:"tech",label:"Technology & Integration"},{key:"gov",label:"Governance & Security"},{key:"people",label:"People & Adoption"}];function loadState(){try{const raw=sessionStorage.getItem(STORE_KEY);if(raw)return JSON.parse(raw)}catch(error){console.log(error)}return{step:1,answers:{},org:{orgName:"",industry:"",size:"",contactName:"",contactEmail:"",platforms:[],functions:[]}}}const state=loadState();try{const savedOrganization=sessionStorage.getItem("v360_organization");if(savedOrganization){const organization=JSON.parse(savedOrganization);state.org={...state.org,...organization}}}catch(error){console.error("Could not load organization profile:",error)}if(Number(state.step)===0)state.step=1;state.step=Number.isFinite(Number(state.step))?Number(state.step):1;state.answers=state.answers||{};state.org=state.org||{};state.org.platforms=Array.isArray(state.org.platforms)?state.org.platforms:[];state.org.functions=Array.isArray(state.org.functions)?state.org.functions:[];const $=selector=>document.querySelector(selector);function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}function pad2(n){return String(n).padStart(2,"0")}function currentQuestion(){if(state.step<=0)return null;return QUESTIONS[state.step-1]}function currentSection(){if(state.step===0)return"org";return currentQuestion().cat}function saveState(){try{sessionStorage.setItem(STORE_KEY,JSON.stringify(state))}catch(error){console.log("Could not save assessment state",error)}}function renderProgress(){const answered=Object.keys(state.answers).length;const pct=Math.round(answered/QUESTIONS.length*100);const current=currentSection();const currentIndex=SECTIONS.findIndex(section=>section.key===current);const done=new Set();SECTIONS.forEach(section=>{if(section.key==="org"){if(state.org.orgName)done.add("org");return}const qs=QUESTIONS.filter(q=>q.cat===section.key);if(qs.length&&qs.every(q=>state.answers[q.n]!==undefined))done.add(section.key)});$("#railList").innerHTML=SECTIONS.map((section,index)=>{const cls=index===currentIndex?"cur":done.has(section.key)?"done":"";return`<li class="${cls}"><span class="n">${pad2(index+1)}</span><span class="dotc"></span><span>${esc(section.label)}</span></li>`}).join("");$("#railFill").style.width=pct+"%";$("#railText").textContent=`${answered} / ${QUESTIONS.length} answered` ;$("#progText").textContent=`Question ${pad2(state.step)} / ${QUESTIONS.length}`;$("#progFill").style.width=pct+"%";$("#progPct").textContent=pct+"%";$("#hprog").style.width=pct+"%"}function renderOrganization(){const o=state.org;const options=(arr,value)=>arr.map(item=>`<option value="${esc(item)}" ${item===value?"selected":""}>${esc(item)}</option>`).join("");return`<div class="q"><div class="qcat">Before we begin</div><h2>Tell us about your organization</h2><p class="intro">These details are not scored. They provide context for your results and tell us where to send them.</p><div class="fgrid"><div class="field"><label>Organization name <i>*</i></label><input type="text" id="orgName" value="${esc(o.orgName)}" autocomplete="organization"></div><div class="field"><label>Industry <i>*</i></label><select id="industry"><option value="">Select</option>${options(INDUSTRIES,o.industry)}</select></div><div class="field"><label>Organization size <i>*</i></label><select id="size"><option value="">Select</option>${options(SIZES,o.size)}</select></div><div class="field"><label>Contact name <i>*</i></label><input type="text" id="contactName" value="${esc(o.contactName)}" autocomplete="name"></div><div class="field full"><label>Contact email <i>*</i></label><input type="email" id="contactEmail" value="${esc(o.contactEmail)}" autocomplete="email"><div class="hint">Your professional PDF report will be sent to this address.</div></div><div class="field full"><label>Primary enterprise platforms</label><div class="chips">${PLATFORMS.map(platform=>`<label><input type="checkbox" name="platforms" value="${esc(platform)}" ${o.platforms.includes(platform)?"checked":""}><span>${esc(platform)}</span></label>`).join("")}</div></div><div class="field full"><label>Business functions of interest</label><div class="chips">${FUNCTIONS.map(fn=>`<label><input type="checkbox" name="functions" value="${esc(fn)}" ${o.functions.includes(fn)?"checked":""}><span>${esc(fn)}</span></label>`).join("")}</div></div></div></div>`}function renderQuestion(q){const category=CATS[q.cat];const selected=state.answers[q.n];return`<div class="q"><div class="qcat">${esc(category.name)}</div><div class="qnum">Question ${pad2(q.n)} of ${QUESTIONS.length}</div><h2>${esc(q.t)}</h2><p class="intro">Select the response that best describes your organization today.</p><div class="options">${q.o.map((option,index)=>`<label class="opt"><input type="radio" name="question-${q.n}" value="${index}" ${selected===index?"checked":""}><div class="opt-box"><div class="num">${index+1}</div><div class="txt">${esc(option)}</div></div></label>`).join("")}</div></div>`}function render(){if(state.step<1)state.step=1;if(state.step>QUESTIONS.length)state.step=QUESTIONS.length;renderProgress();$("#alert").classList.remove("show");$("#stepHost").innerHTML=renderQuestion(currentQuestion());$("#backBtn").disabled=state.step<=1;if(state.step===QUESTIONS.length){$("#nextBtn").innerHTML=`Submit Assessment<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>`}else{$("#nextBtn").innerHTML=`Continue<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>`}}function collectOrganization(){if(!$("#orgName"))return true;state.org.orgName=$("#orgName").value.trim();state.org.industry=$("#industry").value;state.org.size=$("#size").value;state.org.contactName=$("#contactName").value.trim();state.org.contactEmail=$("#contactEmail").value.trim();state.org.platforms=Array.from(document.querySelectorAll('input[name="platforms"]:checked')).map(input=>input.value);state.org.functions=Array.from(document.querySelectorAll('input[name="functions"]:checked')).map(input=>input.value);return true}function showAlert(message){const alert=$("#alert");alert.textContent=message;alert.classList.add("show");window.scrollTo({top:0,behavior:"smooth"})}function selectAnswer(index){const q=currentQuestion();if(!q)return;state.answers[q.n]=Number(index);saveState()}function calculateScores(){const perQuestion=QUESTIONS.map(q=>{const answer=Number(state.answers[q.n]??0);const earned=answer/4*q.w;return{...q,answer,earned}});const sum=(items,key)=>items.reduce((total,item)=>total+item[key],0);const readinessQuestions=perQuestion.filter(q=>CATS[q.cat].type==="readiness");const opportunityQuestions=perQuestion.filter(q=>CATS[q.cat].type==="opportunity");const readinessMax=sum(readinessQuestions,"w");const opportunityMax=sum(opportunityQuestions,"w");const readinessPoints=sum(readinessQuestions,"earned");const opportunityPoints=sum(opportunityQuestions,"earned");const readiness=readinessMax?readinessPoints/readinessMax*100:0;const opportunity=opportunityMax?opportunityPoints/opportunityMax*100:0;const order=["strategy","opportunity","data","tech","gov","people"];const categories=order.map(key=>{const qs=perQuestion.filter(q=>q.cat===key);const max=sum(qs,"w");const earned=sum(qs,"earned");return{key,name:CATS[key].name,type:CATS[key].type,earned,max,pct:max?earned/max*100:0}});return{perQuestion,readiness,opportunity,categories}}function getBand(score,bands){const rounded=Math.round(score);return bands.find(band=>rounded>=band.min&&rounded<=band.max)||bands[bands.length-1]}function buildPayload(){const results=calculateScores();const readinessBand=getBand(results.readiness,READINESS_BANDS);const opportunityBand=getBand(results.opportunity,OPPORTUNITY_BANDS);const detailedAnswers=results.perQuestion.map(q=>({questionNumber:q.n,category:q.cat,answerIndex:q.answer,answerText:q.o[q.answer],weight:q.w}));return{submittedAt:new Date().toISOString(),organization:{orgName:state.org.orgName||"",industry:state.org.industry||"",size:state.org.size||"",contactName:state.org.contactName||"",contactEmail:state.org.contactEmail||"",platforms:state.org.platforms||[],functions:state.org.functions||[]},readinessScore:Math.round(results.readiness),readinessBand:readinessBand.label,opportunityScore:Math.round(results.opportunity),opportunityBand:opportunityBand.label,answers:{...state.answers},detailedAnswers}}function safeFileName(name){return String(name||"Organization").replace(/[\\/:*?"<>|]+/g,"").replace(/\s+/g," ").trim().substring(0,80)}function pdfText(doc,text,x,y,maxWidth,lineHeight=5){const lines=doc.splitTextToSize(String(text||""),maxWidth);doc.text(lines,x,y);return y+lines.length*lineHeight}function pdfLine(doc,x1,y1,x2,y2,color=[220,220,220],width=.3){doc.setDrawColor(color[0],color[1],color[2]);doc.setLineWidth(width);doc.line(x1,y1,x2,y2)}async function getPDFLogoDataURL(){return new Promise(resolve=>{try{const img=new Image();img.onload=function(){resolve(img)};img.onerror=function(){console.warn("Could not load logo.png for PDF.");resolve(null)};img.src=new URL("logo.png",document.baseURI).href}catch(error){console.warn("PDF logo loading error:",error);resolve(null)}})}function addPdfHeader(doc,logoDataURL){const W=doc.internal.pageSize.getWidth();doc.setFillColor(243,111,33);doc.rect(0,0,W,4,"F");doc.setFillColor(255,255,255);doc.rect(0,4,W,25,"F");if(logoDataURL){try{doc.addImage(logoDataURL,"PNG",16,7,48,15)}catch(error){console.warn("Could not place Vigilant 360 logo in PDF:",error);doc.setFont("helvetica","bold");doc.setFontSize(14);doc.setTextColor(243,111,33);doc.text("VIGILANT 360",16,18)}}else{doc.setFont("helvetica","bold");doc.setFontSize(14);doc.setTextColor(243,111,33);doc.text("VIGILANT 360",16,18)}doc.setFont("helvetica","normal");doc.setFontSize(7.5);doc.setTextColor(100,105,108);doc.text("AI READINESS ASSESSMENT",W-16,17,{align:"right"});pdfLine(doc,16,29,W-16,29,[225,225,225],.35)}function addPdfFooter(doc,pageNumber){pdfLine(doc,16,285,194,285,[225,225,225],.3);doc.setFont("helvetica","normal");doc.setFontSize(7);doc.setTextColor(120,120,120);doc.text("Vigilant 360 | AI Readiness Assessment",16,291);doc.text("Page "+pageNumber+" of 3",194,291,{align:"right"})}function drawScoreCard(doc,x,y,w,h,label,score,band,description){doc.setFillColor(250,248,246);doc.roundedRect(x,y,w,h,6,6,"F");doc.setFillColor(243,111,33);doc.roundedRect(x,y,5,h,3,3,"F");doc.setFont("helvetica","bold");doc.setFontSize(8);doc.setTextColor(90,94,97);doc.text(label.toUpperCase(),x+13,y+12);doc.setFont("helvetica","bold");doc.setFontSize(31);doc.setTextColor(243,111,33);doc.text(score+"%",x+13,y+34);doc.setFillColor(243,111,33);doc.roundedRect(x+13,y+40,58,9,4.5,4.5,"F");doc.setFont("helvetica","bold");doc.setFontSize(7);doc.setTextColor(255,255,255);doc.text(String(band).toUpperCase(),x+42,y+46,{align:"center"});doc.setFont("helvetica","normal");doc.setFontSize(7.5);doc.setTextColor(90,94,97);pdfText(doc,description,x+13,y+56,w-20,3.8)}function drawReadinessRow(doc,item,y,maxWidth=178){const pct=Math.max(0,Math.min(100,Math.round(item.pct)));const band=getBand(pct,READINESS_BANDS);doc.setFont("helvetica","bold");doc.setFontSize(8.5);doc.setTextColor(35,39,41);doc.text(item.name,16,y);doc.setFont("helvetica","normal");doc.setFontSize(7.2);doc.setTextColor(100,105,108);doc.text(band.label,157,y,{align:"right"});doc.setFont("helvetica","bold");doc.setFontSize(8.5);doc.setTextColor(35,39,41);doc.text(pct+"%",194,y,{align:"right"});doc.setFillColor(232,233,234);doc.roundedRect(16,y+6,maxWidth,5,2.5,2.5,"F");doc.setFillColor(243,111,33);doc.roundedRect(16,y+6,Math.max(3,maxWidth*pct/100),5,2.5,2.5,"F")}function drawSmallAreaRow(doc,item,y){const pct=Math.max(0,Math.min(100,Math.round(item.pct)));const band=getBand(pct,READINESS_BANDS);doc.setFont("helvetica","bold");doc.setFontSize(7.5);doc.setTextColor(40,44,46);doc.text(item.name,16,y);doc.setFont("helvetica","normal");doc.setFontSize(6.5);doc.setTextColor(100,105,108);doc.text(band.label,157,y,{align:"right"});doc.setFont("helvetica","bold");doc.setFontSize(7.5);doc.setTextColor(40,44,46);doc.text(pct+"%",194,y,{align:"right"});doc.setFillColor(232,233,234);doc.roundedRect(16,y+3.5,178,2.8,1.4,1.4,"F");doc.setFillColor(243,111,33);doc.roundedRect(16,y+3.5,Math.max(2,178*pct/100),2.8,1.4,1.4,"F")}function drawCTA(doc){doc.setFillColor(19,21,22);doc.roundedRect(16,184,178,65,7,7,"F");doc.setFillColor(243,111,33);doc.roundedRect(16,184,178,4,2,2,"F");doc.setFont("helvetica","bold");doc.setFontSize(15);doc.setTextColor(255,255,255);doc.text("TURN THESE RESULTS INTO A PLAN",105,205,{align:"center"});doc.setFont("helvetica","normal");doc.setFontSize(8.5);doc.setTextColor(220,222,223);pdfText(doc,"Talk with Vigilant 360 about practical next steps for AI readiness, opportunity identification and implementation planning.",42,215,126,4.5);const buttonW=70,buttonH=12,buttonX=(210-buttonW)/2,buttonY=231;doc.setFillColor(243,111,33);doc.roundedRect(buttonX,buttonY,buttonW,buttonH,6,6,"F");doc.setFont("helvetica","bold");doc.setFontSize(7.8);doc.setTextColor(255,255,255);doc.text("Talk to Vigilant 360",buttonX+9,buttonY+7.8);const arrowX=buttonX+buttonW-9,arrowY=buttonY+6;doc.setDrawColor(255,255,255);doc.setLineWidth(.65);doc.line(arrowX-3,arrowY,arrowX+3,arrowY);doc.line(arrowX+3,arrowY,arrowX,arrowY-2.2);doc.line(arrowX+3,arrowY,arrowX,arrowY+2.2);doc.link(buttonX,buttonY,buttonW,buttonH,{url:"https://vigilant360.com/contact"})}async function generatePDFBase64(payload){if(!window.jspdf||!window.jspdf.jsPDF)throw new Error("PDF library could not be loaded.");const{jsPDF}=window.jspdf;const doc=new jsPDF({orientation:"portrait",unit:"mm",format:"a4",compress:true});const results=calculateScores();const readiness=Math.round(results.readiness);const opportunity=Math.round(results.opportunity);const readinessBand=getBand(readiness,READINESS_BANDS);const opportunityBand=getBand(opportunity,OPPORTUNITY_BANDS);const org=payload.organization||{};const logoDataURL=await getPDFLogoDataURL();addPdfHeader(doc,logoDataURL);doc.setFont("helvetica","bold");doc.setFontSize(24);doc.setTextColor(243,111,33);doc.text("ASSESSMENT RESULTS",16,48);doc.setFont("helvetica","normal");doc.setFontSize(8.5);doc.setTextColor(100,105,108);doc.text("Prepared for",16,58);doc.setFont("helvetica","bold");doc.setFontSize(14);doc.setTextColor(19,21,22);doc.text(org.orgName||"Organization",16,66);if(payload.submittedAt){const date=new Date(payload.submittedAt).toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"});doc.setFont("helvetica","normal");doc.setFontSize(8);doc.setTextColor(110,115,118);doc.text(date,16,73)}drawScoreCard(doc,16,82,84,62,"AI Readiness",readiness,readinessBand.label,readinessBand.text);drawScoreCard(doc,110,82,84,62,"AI Opportunity",opportunity,opportunityBand.label,opportunityBand.text);doc.setFont("helvetica","bold");doc.setFontSize(15);doc.setTextColor(19,21,22);doc.text("WHAT THIS MEANS",16,164);let meaning=`Your AI Readiness score is ${readiness}%, indicating a ${readinessBand.label.toLowerCase()} level of organizational preparedness for AI. Your AI Opportunity score is ${opportunity}%, indicating ${opportunityBand.label.toLowerCase()} potential for AI-assisted work and process improvement. These scores are independent: an organization can have significant AI opportunities while still needing to strengthen its readiness foundations.`;doc.setFont("helvetica","normal");doc.setFontSize(9);doc.setTextColor(82,87,90);pdfText(doc,meaning,16,174,178,5);doc.setFillColor(255,247,241);doc.roundedRect(16,208,178,36,6,6,"F");doc.setFont("helvetica","bold");doc.setFontSize(8.5);doc.setTextColor(243,111,33);doc.text("READINESS",24,219);doc.text("OPPORTUNITY",116,219);doc.setFont("helvetica","normal");doc.setFontSize(7.8);doc.setTextColor(88,92,95);pdfText(doc,readinessBand.text,24,227,76,4);pdfText(doc,opportunityBand.text,116,227,76,4);addPdfFooter(doc,1);doc.addPage();
+
+addPdfHeader(
+  doc,
+  logoDataURL
+);
+
+/* =======================================================
+   PAGE 2 — VIGILANT 360 READINESS SUMMARY
+======================================================= */
+
+const readinessCategories =
+  results.categories.filter(
+    category =>
+      category.type === "readiness"
+  );
+
+/* -------------------------------------------------------
+   READINESS BY AREA
+------------------------------------------------------- */
+
+doc.setFont("helvetica", "bold");
+doc.setFontSize(17);
+doc.setTextColor(19, 21, 22);
+
+doc.text(
+  "READINESS BY AREA",
+  16,
+  40
+);
+
+doc.setFont("helvetica", "normal");
+doc.setFontSize(7.2);
+doc.setTextColor(100, 105, 108);
+
+doc.text(
+  "Five AI readiness dimensions",
+  16,
+  47
+);
+
+readinessCategories
+  .slice(0, 5)
+  .forEach(
+    (category, index) => {
+
+      drawSmallAreaRow(
+        doc,
+        category,
+        55 + (index * 9)
+      );
+
+    }
+  );
+
+/* -------------------------------------------------------
+   CATEGORY SCORES
+------------------------------------------------------- */
+
+doc.setFont("helvetica", "bold");
+doc.setFontSize(12);
+doc.setTextColor(19, 21, 22);
+
+doc.text(
+  "CATEGORY SCORES",
+  16,
+  108
+);
+
+pdfLine(
+  doc,
+  16,
+  112,
+  194,
+  112,
+  [35, 37, 38],
+  .5
+);
+
+const categoryRows = [
+  ...readinessCategories,
+  {
+    name: "AI Opportunity",
+    pct: results.opportunity,
+    type: "opportunity"
+  }
+];
+
+const orderedCategoryRows = [
+  categoryRows.find(item => item.key === "strategy"),
+  categoryRows.find(item => item.name === "AI Opportunity"),
+  categoryRows.find(item => item.key === "data"),
+  categoryRows.find(item => item.key === "tech"),
+  categoryRows.find(item => item.key === "gov"),
+  categoryRows.find(item => item.key === "people")
+].filter(Boolean);
+
+orderedCategoryRows.forEach(
+  (item, index) => {
+
+    const pct =
+      Math.round(item.pct);
+
+    const band =
+      item.type === "opportunity"
+        ? getBand(
+            pct,
+            OPPORTUNITY_BANDS
+          )
+        : getBand(
+            pct,
+            READINESS_BANDS
+          );
+
+    const y =
+      121 + (index * 9.5);
+
+    doc.setFont(
+      "helvetica",
+      "bold"
+    );
+
+    doc.setFontSize(7.2);
+
+    doc.setTextColor(
+      40,
+      44,
+      46
+    );
+
+    doc.text(
+      item.name,
+      16,
+      y
+    );
+
+    doc.setFont(
+      "helvetica",
+      "bold"
+    );
+
+    doc.setFontSize(7.2);
+
+    doc.text(
+      pct + "%",
+      172,
+      y,
+      {
+        align: "right"
+      }
+    );
+
+    doc.setFont(
+      "helvetica",
+      "normal"
+    );
+
+    doc.setFontSize(6.6);
+
+    doc.setTextColor(
+      100,
+      105,
+      108
+    );
+
+    doc.text(
+      band.label.toUpperCase(),
+      194,
+      y,
+      {
+        align: "right"
+      }
+    );
+
+    pdfLine(
+      doc,
+      16,
+      y + 4,
+      194,
+      y + 4,
+      [232, 232, 232],
+      .3
+    );
+
+  }
+);
+
+/* -------------------------------------------------------
+   STRONGEST READINESS AREAS
+------------------------------------------------------- */
+
+const strongestAreas =
+  [...readinessCategories]
+    .sort(
+      (a, b) =>
+        b.pct - a.pct
+    )
+    .slice(0, 3);
+
+doc.setFont(
+  "helvetica",
+  "bold"
+);
+
+doc.setFontSize(12);
+
+doc.setTextColor(
+  19,
+  21,
+  22
+);
+
+doc.text(
+  "STRONGEST READINESS AREAS",
+  16,
+  186
+);
+
+pdfLine(
+  doc,
+  16,
+  190,
+  194,
+  190,
+  [35, 37, 38],
+  .5
+);
+
+strongestAreas.forEach(
+  (item, index) => {
+
+    const y =
+      201 + (index * 10);
+
+    const pct =
+      Math.round(item.pct);
+
+    doc.setFont(
+      "helvetica",
+      "bold"
+    );
+
+    doc.setFontSize(7.5);
+
+    doc.setTextColor(
+      40,
+      44,
+      46
+    );
+
+    doc.text(
+      item.name,
+      16,
+      y
+    );
+
+    doc.setTextColor(
+      19,
+      21,
+      22
+    );
+
+    doc.text(
+      pct + "%",
+      194,
+      y,
+      {
+        align: "right"
+      }
+    );
+
+    pdfLine(
+      doc,
+      16,
+      y + 5,
+      194,
+      y + 5,
+      [232, 232, 232],
+      .3
+    );
+
+  }
+);
+
+addPdfFooter(
+  doc,
+  2
+);
+
+doc.addPage();
+
+addPdfHeader(
+  doc,
+  logoDataURL
+);
+
+/* =======================================================
+   PAGE 3 — PRIORITY AREAS + ORGANIZATION PROFILE
+======================================================= */
+
+/*
+   PRIORITY AREAS = three lowest
+   readiness dimensions only.
+   This is intentionally separate from
+   STRONGEST READINESS AREAS on Page 2.
+*/
+const priorityAreas =
+  [...readinessCategories]
+    .sort(
+      (a, b) =>
+        a.pct - b.pct
+    )
+    .slice(0, 3);
+
+/* -------------------------------------------------------
+   PRIORITY AREAS
+------------------------------------------------------- */
+
+doc.setFont(
+  "helvetica",
+  "bold"
+);
+
+doc.setFontSize(18);
+
+doc.setTextColor(
+  19,
+  21,
+  22
+);
+
+doc.text(
+  "PRIORITY AREAS",
+  16,
+  43
+);
+
+pdfLine(
+  doc,
+  16,
+  48,
+  194,
+  48,
+  [35, 37, 38],
+  .5
+);
+
+if(priorityAreas.length){
+
+  priorityAreas.forEach(
+    (item, index) => {
+
+      const y =
+        59 + (index * 14);
+
+      const pct =
+        Math.round(item.pct);
+
+      doc.setFont(
+        "helvetica",
+        "bold"
+      );
+
+      doc.setFontSize(8);
+
+      doc.setTextColor(
+        40,
+        44,
+        46
+      );
+
+      doc.text(
+        item.name,
+        16,
+        y
+      );
+
+      doc.setTextColor(
+        243,
+        111,
+        33
+      );
+
+      doc.text(
+        pct + "%",
+        194,
+        y,
+        {
+          align: "right"
+        }
+      );
+
+      pdfLine(
+        doc,
+        16,
+        y + 5,
+        194,
+        y + 5,
+        [232, 232, 232],
+        .3
+      );
+
+    }
+  );
+
+}else{
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+  doc.setFontSize(7.8);
+
+  doc.setTextColor(
+    100,
+    105,
+    108
+  );
+
+  doc.text(
+    "No immediate priority areas identified.",
+    16,
+    60
+  );
+
+}
+
+/* -------------------------------------------------------
+   ORGANIZATION PROFILE
+------------------------------------------------------- */
+
+doc.setFont(
+  "helvetica",
+  "bold"
+);
+
+doc.setFontSize(17);
+
+doc.setTextColor(
+  19,
+  21,
+  22
+);
+
+doc.text(
+  "ORGANIZATION PROFILE",
+  16,
+  112
+);
+
+doc.setFont(
+  "helvetica",
+  "normal"
+);
+
+doc.setFontSize(8.5);
+
+doc.setTextColor(
+  100,
+  105,
+  108
+);
+
+doc.text(
+  "Assessment participant information",
+  16,
+  121
+);
+
+const profile = [
+
+  [
+    "Organization",
+    org.orgName
+  ],
+
+  [
+    "Industry",
+    org.industry
+  ],
+
+  [
+    "Organization Size",
+    org.size
+  ],
+
+  [
+    "Contact Name",
+    org.contactName
+  ],
+
+  [
+    "Contact Email",
+    org.contactEmail
+  ],
+
+  [
+    "Platforms",
+    (org.platforms || []).length
+      ? org.platforms.join(", ")
+      : "Not specified"
+  ],
+
+  [
+    "Functions",
+    (org.functions || []).length
+      ? org.functions.join(", ")
+      : "Not specified"
+  ]
+
+];
+
+let profileY = 129;
+
+profile.forEach(
+  row => {
+
+    doc.setFont(
+      "helvetica",
+      "bold"
+    );
+
+    doc.setFontSize(7);
+
+    doc.setTextColor(
+      100,
+      105,
+      108
+    );
+
+    doc.text(
+      row[0],
+      16,
+      profileY
+    );
+
+    doc.setFont(
+      "helvetica",
+      "normal"
+    );
+
+    doc.setFontSize(8);
+
+    doc.setTextColor(
+      30,
+      34,
+      36
+    );
+
+    const valueLines =
+      doc.splitTextToSize(
+        String(
+          row[1] || ""
+        ),
+        120
+      );
+
+    doc.text(
+      valueLines,
+      70,
+      profileY
+    );
+
+    const rowHeight =
+      Math.max(
+        10,
+        valueLines.length * 4 + 5
+      );
+
+    pdfLine(
+      doc,
+      16,
+      profileY + rowHeight - 3,
+      194,
+      profileY + rowHeight - 3,
+      [232, 232, 232],
+      .3
+    );
+
+    profileY += rowHeight;
+
+  }
+);
+
+/* -------------------------------------------------------
+   VIGILANT 360 CTA
+------------------------------------------------------- */
+
+drawCTA(
+  doc
+);
+
+addPdfFooter(
+  doc,
+  3
+);
+
+const dataUri=doc.output("datauristring");const comma=dataUri.indexOf(",");if(comma===-1)throw new Error("Could not convert PDF to Base64.");const pdfBase64=dataUri.substring(comma+1);const fileName=safeFileName(org.orgName)+"-AI-Readiness-Assessment.pdf";return{fileName,contentBase64:pdfBase64}}async function submitAssessment(){if(!SUBMISSION_API_URL)throw new Error("Submission service is not configured.");const payload=buildPayload();console.log("STEP 1 - Payload built",payload);console.log("STEP 2 - Generating PDF...");const pdf=await generatePDFBase64(payload);console.log("STEP 3 - PDF generated:",pdf.fileName);payload.email={organizationName:payload.organization.orgName,contactName:payload.organization.contactName,contactEmail:payload.organization.contactEmail};payload.pdf={fileName:pdf.fileName,contentBase64:pdf.contentBase64};console.log("STEP 4 - PDF attached to payload");const response=await fetch(SUBMISSION_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});console.log("STEP 5 - Azure Function response:",response.status);if(!response.ok){const errorText=await response.text();console.error("Azure Function error:",errorText);throw new Error("Submission service returned an error.")}const result=await response.json();console.log("STEP 6 - Azure Function result:",result);if(result&&result.success===false)throw new Error(result.message||"Submission was not accepted.");return true}function showSubmittedPopup(){$("#loading").classList.remove("show");$("#submitModal").classList.add("show")}async function continueNext(){$("#alert").classList.remove("show");if(state.step>=1&&state.step<QUESTIONS.length){const q=currentQuestion();const selected=document.querySelector(`input[name="question-${q.n}"]:checked`);if(!selected){showAlert("Please select an answer before continuing.");return}selectAnswer(selected.value);state.step++;saveState();render();window.scrollTo({top:0,behavior:"smooth"});return}if(state.step===QUESTIONS.length){const q=currentQuestion();const selected=document.querySelector(`input[name="question-${q.n}"]:checked`);if(!selected){showAlert("Please select an answer before submitting.");return}selectAnswer(selected.value);saveState();const missing=QUESTIONS.filter(question=>state.answers[question.n]===undefined);if(missing.length){showAlert(`Question ${missing[0].n} has not been answered yet. Please complete all questions before submitting.`);state.step=missing[0].n;saveState();render();return}$("#loading").classList.add("show");try{await submitAssessment();showSubmittedPopup()}catch(error){console.error("Submission error:",error);$("#loading").classList.remove("show");showAlert("We couldn't submit your assessment. Please try again.")}}}function goBack(){if(state.step<=1){window.location.href="assessment new.html";return}state.step--;saveState();render();window.scrollTo({top:0,behavior:"smooth"})}document.addEventListener("change",event=>{if(!event.target.matches('input[type="radio"][name^="question-"]'))return;selectAnswer(event.target.value);if(state.step>=1&&state.step<QUESTIONS.length){const stepAtClick=state.step;setTimeout(()=>{if(state.step!==stepAtClick)return;state.step++;saveState();render();window.scrollTo({top:0,behavior:"smooth"})},350)}});$("#nextBtn").addEventListener("click",continueNext);$("#backBtn").addEventListener("click",goBack);$("#doneBtn").addEventListener("click",()=>{try{sessionStorage.removeItem(STORE_KEY);sessionStorage.removeItem("v360_organization")}catch(error){console.log("Could not clear assessment data:",error)}window.location.href="index new.html"});document.addEventListener("keydown",event=>{if(event.key==="Enter"){const active=document.activeElement;if(active&&(active.tagName==="INPUT"||active.tagName==="SELECT"))return;continueNext()}});render();
+  </script>
+ </body>
+</html>

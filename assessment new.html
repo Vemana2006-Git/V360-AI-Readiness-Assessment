@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Organization Information | Vigilant 360</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin
+>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+>
+
+
+<style>
+
+/* =========================================================
+   BASE
+========================================================= */
+
+:root{
+
+  --dark:#131516;
+  --dark-2:#1a1d1f;
+
+  --orange:#E87511;
+  --orange-dark:#c96208;
+
+  --ink:#161718;
+  --text:#3a3d40;
+  --muted:#6b6f73;
+  --faint:#9a9ea3;
+
+  --rule:#e2e4e7;
+  --tint:#f5f6f7;
+  --white:#ffffff;
+
+  --error:#b3261e;
+
+  --mono:"Roboto Mono",ui-monospace,monospace;
+
+}
+
+
+*{
+  box-sizing:border-box;
+}
+
+
+html{
+  scroll-behavior:smooth;
+}
+
+
+body{
+
+  margin:0;
+
+  padding:0;
+
+  background:var(--tint);
+
+  color:var(--text);
+
+  font-family:"Roboto",Arial,Helvetica,sans-serif;
+
+  line-height:1.6;
+
+  -webkit-font-smoothing:antialiased;
+
+}
+
+
+a{
+  color:inherit;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site{
+
+  position:sticky;
+
+  top:0;
+
+  z-index:20;
+
+  background:rgba(255,255,255,.96);
+
+  backdrop-filter:blur(12px);
+
+  border-bottom:1px solid var(--rule);
+
+}
+
+
+.site .wrap{
+
+  max-width:1180px;
+
+  height:76px;
+
+  margin:0 auto;
+
+  padding:0 32px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+}
+
+
+/* HORIZONTAL VIGILANT 360 LOGO */
+
+.logo-image{
+
+  display:flex;
+
+  align-items:center;
+
+  text-decoration:none;
+
+}
+
+
+.logo-image img{
+
+  display:block;
+
+  width:150px;
+
+  height:auto;
+
+}
+
+
+/* BACK LINK */
+
+.nav-back{
+
+  text-decoration:none;
+
+  color:var(--muted);
+
+  font-size:14px;
+
+}
+
+
+.nav-back:hover{
+
+  color:var(--ink);
+
+}
+
+
+@media(max-width:640px){
+
+  .site .wrap{
+
+    height:64px;
+
+    padding:0 20px;
+
+  }
+
+  .logo-image img{
+
+    width:125px;
+
+  }
+
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page{
+
+  min-height:calc(100vh - 76px);
+
+  padding:58px 20px 100px;
+
+}
+
+
+.container{
+
+  max-width:900px;
+
+  margin:0 auto;
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-top{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:14px;
+
+  font-family:var(--mono);
+
+  font-size:11px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.12em;
+
+  color:var(--muted);
+
+}
+
+
+.progress-bar{
+
+  height:3px;
+
+  background:var(--rule);
+
+  border-radius:5px;
+
+  overflow:hidden;
+
+  margin-bottom:32px;
+
+}
+
+
+.progress-bar span{
+
+  display:block;
+
+  width:5%;
+
+  height:100%;
+
+  background:var(--orange);
+
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.card{
+
+  background:#fff;
+
+  border-radius:18px;
+
+  box-shadow:
+
+    0 1px 2px rgba(19,21,22,.04),
+
+    0 24px 60px rgba(19,21,22,.06);
+
+  padding:48px 52px;
+
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.label{
+
+  font-family:var(--mono);
+
+  font-size:11.5px;
+
+  letter-spacing:.14em;
+
+  text-transform:uppercase;
+
+  color:var(--orange);
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  margin-bottom:18px;
+
+}
+
+
+.label:before{
+
+  content:"";
+
+  width:22px;
+
+  height:1px;
+
+  background:var(--orange);
+
+}
+
+
+h1{
+
+  margin:0 0 12px;
+
+  color:var(--ink);
+
+  font-size:38px;
+
+  line-height:1.1;
+
+  letter-spacing:-.025em;
+
+}
+
+
+.intro{
+
+  margin:0 0 36px;
+
+  color:var(--muted);
+
+  font-size:16px;
+
+  max-width:650px;
+
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-grid{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:24px 28px;
+
+}
+
+
+.field.full{
+
+  grid-column:1 / -1;
+
+}
+
+
+.field label{
+
+  display:block;
+
+  color:var(--ink);
+
+  font-size:13px;
+
+  font-weight:500;
+
+  margin-bottom:8px;
+
+}
+
+
+.field label i{
+
+  color:var(--orange);
+
+  font-style:normal;
+
+}
+
+
+input[type="text"],
+input[type="email"],
+select{
+
+  width:100%;
+
+  padding:14px 16px;
+
+  font:inherit;
+
+  font-size:15px;
+
+  color:var(--ink);
+
+  background:#fff;
+
+  border:1px solid var(--rule);
+
+  border-radius:10px;
+
+  outline:none;
+
+  transition:.2s;
+
+}
+
+
+input:hover,
+select:hover{
+
+  border-color:#c8cbd0;
+
+}
+
+
+input:focus,
+select:focus{
+
+  border-color:var(--ink);
+
+  box-shadow:0 0 0 4px rgba(19,21,22,.07);
+
+}
+
+
+.field.error input,
+.field.error select{
+
+  border-color:var(--error);
+
+}
+
+
+.hint{
+
+  margin-top:7px;
+
+  font-size:12.5px;
+
+  color:var(--faint);
+
+}
+
+
+/* =========================================================
+   CHIPS
+========================================================= */
+
+.chips{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:9px;
+
+}
+
+
+.chip{
+
+  position:relative;
+
+}
+
+
+.chip input{
+
+  position:absolute;
+
+  opacity:0;
+
+  pointer-events:none;
+
+}
+
+
+.chip span{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  padding:9px 14px;
+
+  border:1px solid var(--rule);
+
+  border-radius:999px;
+
+  background:#fff;
+
+  color:var(--text);
+
+  font-size:14px;
+
+  cursor:pointer;
+
+  transition:.18s;
+
+}
+
+
+.chip span:before{
+
+  content:"";
+
+  width:6px;
+
+  height:6px;
+
+  border-radius:50%;
+
+  background:var(--rule);
+
+}
+
+
+.chip:hover span{
+
+  border-color:#c8cbd0;
+
+}
+
+
+.chip input:checked + span{
+
+  background:var(--ink);
+
+  color:#fff;
+
+  border-color:var(--ink);
+
+}
+
+
+.chip input:checked + span:before{
+
+  background:var(--orange);
+
+}
+
+
+/* =========================================================
+   ALERT
+========================================================= */
+
+.alert{
+
+  display:none;
+
+  margin-bottom:24px;
+
+  padding:13px 16px;
+
+  border-left:3px solid var(--error);
+
+  border-radius:0 8px 8px 0;
+
+  background:#fdf3f2;
+
+  color:#7a1f18;
+
+  font-size:14px;
+
+}
+
+
+.alert.show{
+
+  display:block;
+
+}
+
+
+/* =========================================================
+   PRIVACY CONSENT
+========================================================= */
+
+.consent-box{
+
+  margin-top:30px;
+
+  padding:16px 18px;
+
+  border:1px solid var(--rule);
+
+  border-radius:10px;
+
+  background:#fafafa;
+
+  transition:.2s;
+
+}
+
+
+.consent-label{
+
+  display:flex;
+
+  gap:10px;
+
+  align-items:flex-start;
+
+  cursor:pointer;
+
+  font-size:13px;
+
+  line-height:1.6;
+
+  color:#444;
+
+}
+
+
+.consent-label input{
+
+  margin-top:4px;
+
+  width:16px;
+
+  height:16px;
+
+  flex:0 0 auto;
+
+  cursor:pointer;
+
+}
+
+
+.consent-label a{
+
+  color:var(--orange);
+
+  text-decoration:underline;
+
+}
+
+
+.consent-label a:hover{
+
+  color:var(--orange-dark);
+
+}
+
+
+/* =========================================================
+   HONEYPOT
+========================================================= */
+
+.honeypot{
+
+  position:absolute;
+
+  left:-9999px;
+
+  top:auto;
+
+  width:1px;
+
+  height:1px;
+
+  overflow:hidden;
+
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.actions{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-top:42px;
+
+  padding-top:28px;
+
+  border-top:1px solid var(--rule);
+
+}
+
+
+.btn{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:15px 26px;
+
+  border-radius:999px;
+
+  border:1px solid transparent;
+
+  font:inherit;
+
+  font-size:15px;
+
+  font-weight:500;
+
+  text-decoration:none;
+
+  cursor:pointer;
+
+  transition:.2s;
+
+}
+
+
+.btn-back{
+
+  background:transparent;
+
+  color:var(--muted);
+
+  border-color:var(--rule);
+
+}
+
+
+.btn-back:hover{
+
+  color:var(--ink);
+
+  border-color:var(--ink);
+
+}
+
+
+.btn-primary{
+
+  background:var(--orange);
+
+  color:#fff;
+
+  box-shadow:0 8px 22px rgba(232,117,17,.25);
+
+}
+
+
+.btn-primary:hover{
+
+  background:var(--orange-dark);
+
+  transform:translateY(-1px);
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+  .page{
+
+    padding:30px 14px 60px;
+
+  }
+
+
+  .card{
+
+    padding:28px 20px;
+
+    border-radius:12px;
+
+  }
+
+
+  h1{
+
+    font-size:30px;
+
+  }
+
+
+  .form-grid{
+
+    grid-template-columns:1fr;
+
+    gap:20px;
+
+  }
+
+
+  .field.full{
+
+    grid-column:auto;
+
+  }
+
+
+  .actions{
+
+    gap:12px;
+
+  }
+
+
+  .btn{
+
+    padding:14px 18px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ========================================================
+     HEADER
+========================================================= -->
+
+<header class="site">
+
+  <div class="wrap">
+
+
+    <!-- LOGO.PNG IS IN THE SAME FOLDER -->
+
+    <a
+      href="index new.html"
+      class="logo-image"
+      aria-label="Vigilant 360"
+    >
+
+      <img
+        src="logo.png"
+        alt="Vigilant 360"
+      >
+
+    </a>
+
+
+    <a
+      href="index new.html"
+      class="nav-back"
+    >
+      ← Back to overview
+    </a>
+
+
+  </div>
+
+</header>
+
+
+
+<!-- ========================================================
+     MAIN
+========================================================= -->
+
+<main class="page">
+
+  <div class="container">
+
+
+    <!-- PROGRESS -->
+
+    <div class="progress-top">
+
+      <span>
+        Assessment
+      </span>
+
+      <span>
+        Step 1 of 20
+      </span>
+
+    </div>
+
+
+    <div class="progress-bar">
+
+      <span></span>
+
+    </div>
+
+
+
+    <!-- CARD -->
+
+    <section class="card">
+
+
+      <div class="label">
+
+        Before we begin
+
+      </div>
+
+
+      <h1>
+
+        Tell us about your organization
+
+      </h1>
+
+
+      <p class="intro">
+
+        These details are not scored. They provide context
+        for your results and tell us where to send them.
+
+      </p>
+
+
+      <div
+        id="alert"
+        class="alert"
+        role="alert"
+      >
+        Please complete the required fields, including a valid email address.
+      </div>
+
+
+
+      <!-- ==================================================
+           FORM
+      =================================================== -->
+
+      <form
+        id="assessmentForm"
+        novalidate
+        autocomplete="on"
+      >
+
+
+        <div class="form-grid">
+
+
+          <!-- ORGANIZATION NAME -->
+
+          <div class="field">
+
+            <label>
+              Organization name <i>*</i>
+            </label>
+
+            <input
+              type="text"
+              id="orgName"
+              name="orgName"
+              autocomplete="organization"
+              required
+            >
+
+          </div>
+
+
+
+          <!-- INDUSTRY -->
+
+          <div class="field">
+
+            <label>
+              Industry <i>*</i>
+            </label>
+
+            <select
+              id="industry"
+              name="industry"
+              required
+            >
+
+              <option value="">
+                Select
+              </option>
+
+              <option>
+                Financial Services
+              </option>
+
+              <option>
+                Healthcare & Life Sciences
+              </option>
+
+              <option>
+                Manufacturing
+              </option>
+
+              <option>
+                Retail & Consumer
+              </option>
+
+              <option>
+                Professional Services
+              </option>
+
+              <option>
+                Technology
+              </option>
+
+              <option>
+                Energy & Utilities
+              </option>
+
+              <option>
+                Public Sector & Education
+              </option>
+
+              <option>
+                Transportation & Logistics
+              </option>
+
+              <option>
+                Construction & Real Estate
+              </option>
+
+              <option>
+                Media & Telecommunications
+              </option>
+
+              <option>
+                Non-profit
+              </option>
+
+              <option>
+                Other
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- ORGANIZATION SIZE -->
+
+          <div class="field">
+
+            <label>
+              Organization size <i>*</i>
+            </label>
+
+            <select
+              id="size"
+              name="size"
+              required
+            >
+
+              <option value="">
+                Select
+              </option>
+
+              <option>
+                1–50 employees
+              </option>
+
+              <option>
+                51–250 employees
+              </option>
+
+              <option>
+                251–1,000 employees
+              </option>
+
+              <option>
+                1,001–5,000 employees
+              </option>
+
+              <option>
+                5,001–10,000 employees
+              </option>
+
+              <option>
+                10,000+ employees
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- CONTACT NAME -->
+
+          <div class="field">
+
+            <label>
+              Contact name <i>*</i>
+            </label>
+
+            <input
+              type="text"
+              id="contactName"
+              name="contactName"
+              autocomplete="name"
+              required
+            >
+
+          </div>
+
+
+
+          <!-- EMAIL -->
+
+          <div class="field full">
+
+            <label>
+              Contact email <i>*</i>
+            </label>
+
+            <input
+              type="email"
+              id="contactEmail"
+              name="contactEmail"
+              autocomplete="email"
+              required
+            >
+
+            <div class="hint">
+              Your results will be sent to this address.
+            </div>
+
+          </div>
+
+
+
+          <!-- PLATFORMS -->
+
+          <div class="field full">
+
+            <label>
+              Primary enterprise platforms
+            </label>
+
+
+            <div class="chips">
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="platforms"
+                  value="Microsoft"
+                >
+
+                <span>
+                  Microsoft
+                </span>
+
+              </label>
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="platforms"
+                  value="Oracle"
+                >
+
+                <span>
+                  Oracle
+                </span>
+
+              </label>
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="platforms"
+                  value="SAP"
+                >
+
+                <span>
+                  SAP
+                </span>
+
+              </label>
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="platforms"
+                  value="Salesforce"
+                >
+
+                <span>
+                  Salesforce
+                </span>
+
+              </label>
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="platforms"
+                  value="ServiceNow"
+                >
+
+                <span>
+                  ServiceNow
+                </span>
+
+              </label>
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="platforms"
+                  value="AWS"
+                >
+
+                <span>
+                  AWS
+                </span>
+
+              </label>
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="platforms"
+                  value="Google"
+                >
+
+                <span>
+                  Google
+                </span>
+
+              </label>
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="platforms"
+                  value="Other"
+                >
+
+                <span>
+                  Other
+                </span>
+
+              </label>
+
+
+            </div>
+
+          </div>
+
+
+
+          <!-- FUNCTIONS -->
+
+          <div class="field full">
+
+            <label>
+              Business functions of interest
+            </label>
+
+
+            <div class="chips">
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="functions"
+                  value="Finance"
+                >
+
+                <span>
+                  Finance
+                </span>
+
+              </label>
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="functions"
+                  value="HR"
+                >
+
+                <span>
+                  HR
+                </span>
+
+              </label>
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="functions"
+                  value="Procurement"
+                >
+
+                <span>
+                  Procurement
+                </span>
+
+              </label>
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="functions"
+                  value="IT"
+                >
+
+                <span>
+                  IT
+                </span>
+
+              </label>
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="functions"
+                  value="Customer Service"
+                >
+
+                <span>
+                  Customer Service
+                </span>
+
+              </label>
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="functions"
+                  value="Sales"
+                >
+
+                <span>
+                  Sales
+                </span>
+
+              </label>
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="functions"
+                  value="Operations"
+                >
+
+                <span>
+                  Operations
+                </span>
+
+              </label>
+
+
+              <label class="chip">
+
+                <input
+                  type="checkbox"
+                  name="functions"
+                  value="Other"
+                >
+
+                <span>
+                  Other
+                </span>
+
+              </label>
+
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- ==================================================
+             PRIVACY CONSENT
+        =================================================== -->
+
+        <div
+          class="consent-box"
+          id="consentBox"
+        >
+
+          <label
+            class="consent-label"
+            for="privacyConsent"
+          >
+
+            <input
+              type="checkbox"
+              id="privacyConsent"
+              name="privacyConsent"
+            >
+
+            <span>
+
+              I agree that Vigilant 360 may store and use the
+              information I provide to process my assessment
+              and send my results.
+              See our
+
+              <a
+                href="https://vigilant360.com/privacy-policy/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Privacy Policy
+              </a>.
+
+            </span>
+
+          </label>
+
+        </div>
+
+
+        <!-- ==================================================
+             HONEYPOT
+        =================================================== -->
+
+        <div
+          class="honeypot"
+          aria-hidden="true"
+        >
+
+          <label for="website_url">
+            Website
+          </label>
+
+          <input
+            type="text"
+            id="website_url"
+            name="website_url"
+            tabindex="-1"
+            autocomplete="off"
+            value=""
+          >
+
+        </div>
+
+
+        <!-- ==================================================
+             BUTTONS
+        =================================================== -->
+
+        <div class="actions">
+
+
+          <a
+            href="index new.html"
+            class="btn btn-back"
+          >
+            ← Back
+          </a>
+
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            Continue →
+          </button>
+
+
+        </div>
+
+
+      </form>
+
+    </section>
+
+  </div>
+
+</main>
+
+
+
+<!-- ========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+const form =
+  document.getElementById("assessmentForm");
+
+const alertBox =
+  document.getElementById("alert");
+
+const consentBox =
+  document.getElementById("consentBox");
+
+const privacyConsent =
+  document.getElementById("privacyConsent");
+
+const honeypot =
+  document.getElementById("website_url");
+
+
+form.addEventListener(
+  "submit",
+  function(event){
+
+    event.preventDefault();
+
+
+    alertBox.classList.remove("show");
+
+    consentBox.style.borderColor =
+      "var(--rule)";
+
+
+    /* ====================================================
+       HONEYPOT CHECK
+       If a bot fills this hidden field, ignore submission.
+    ==================================================== */
+
+    if(
+      honeypot &&
+      honeypot.value.trim()
+    ){
+
+      return;
+
+    }
+
+
+    /* ====================================================
+       REQUIRED FIELDS
+    ==================================================== */
+
+    const requiredFields = [
+
+      document.getElementById("orgName"),
+
+      document.getElementById("industry"),
+
+      document.getElementById("size"),
+
+      document.getElementById("contactName"),
+
+      document.getElementById("contactEmail")
+
+    ];
+
+
+    let valid = true;
+
+    let firstInvalid = null;
+
+
+    /* REMOVE PREVIOUS ERRORS */
+
+    document
+      .querySelectorAll(".field")
+      .forEach(field => {
+
+        field.classList.remove("error");
+
+      });
+
+
+    /* ====================================================
+       CHECK REQUIRED FIELDS
+    ==================================================== */
+
+    requiredFields.forEach(field => {
+
+      if(!field.value.trim()){
+
+        valid = false;
+
+        field
+          .closest(".field")
+          .classList.add("error");
+
+
+        if(!firstInvalid){
+
+          firstInvalid = field;
+
+        }
+
+      }
+
+    });
+
+
+    /* ====================================================
+       CHECK EMAIL
+    ==================================================== */
+
+    const email =
+      document.getElementById("contactEmail");
+
+
+    if(
+
+      email.value.trim() &&
+
+      !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+        .test(email.value.trim())
+
+    ){
+
+      valid = false;
+
+
+      email
+        .closest(".field")
+        .classList.add("error");
+
+
+      if(!firstInvalid){
+
+        firstInvalid = email;
+
+      }
+
+    }
+
+
+    /* ====================================================
+       CHECK PRIVACY CONSENT
+    ==================================================== */
+
+    if(!privacyConsent.checked){
+
+      valid = false;
+
+      consentBox.style.borderColor =
+        "var(--error)";
+
+
+      if(!firstInvalid){
+
+        firstInvalid =
+          privacyConsent;
+
+      }
+
+    }
+
+
+    /* ====================================================
+       SHOW ERROR
+    ==================================================== */
+
+    if(!valid){
+
+      if(
+        !privacyConsent.checked &&
+        requiredFields.every(field =>
+          field.value.trim()
+        )
+      ){
+
+        alertBox.textContent =
+          "Please accept the Privacy Policy before continuing.";
+
+      }else{
+
+        alertBox.textContent =
+          "Please complete the required fields, including a valid email address, and accept the Privacy Policy.";
+
+      }
+
+
+      alertBox.classList.add("show");
+
+
+      if(firstInvalid){
+
+        firstInvalid.focus();
+
+        firstInvalid.scrollIntoView({
+
+          behavior:"smooth",
+
+          block:"center"
+
+        });
+
+      }
+
+      return;
+
+    }
+
+
+    /* ====================================================
+       COLLECT FORM DATA
+    ==================================================== */
+
+    const organization = {
+
+      orgName:
+
+        document
+          .getElementById("orgName")
+          .value
+          .trim(),
+
+
+      industry:
+
+        document
+          .getElementById("industry")
+          .value,
+
+
+      size:
+
+        document
+          .getElementById("size")
+          .value,
+
+
+      contactName:
+
+        document
+          .getElementById("contactName")
+          .value
+          .trim(),
+
+
+      contactEmail:
+
+        document
+          .getElementById("contactEmail")
+          .value
+          .trim(),
+
+
+      privacyConsent:
+
+        privacyConsent.checked,
+
+
+      platforms:
+
+        [
+
+          ...document.querySelectorAll(
+            'input[name="platforms"]:checked'
+          )
+
+        ]
+        .map(input => input.value),
+
+
+      functions:
+
+        [
+
+          ...document.querySelectorAll(
+            'input[name="functions"]:checked'
+          )
+
+        ]
+        .map(input => input.value)
+
+    };
+
+
+    /* ====================================================
+       SAVE FOR NEXT PAGE
+    ==================================================== */
+
+    sessionStorage.setItem(
+
+      "v360_organization",
+
+      JSON.stringify(organization)
+
+    );
+
+
+    /* ====================================================
+       GO TO QUESTIONS PAGE
+    ==================================================== */
+
+    window.location.href =
+      "questions new.html";
+
+  }
+
+);
+
+</script>
+
+
+</body>
+
+</html>
